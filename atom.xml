@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Lzx的博客</title>
+  
+  <subtitle>码农的自留地</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-05-03T08:56:12.773Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Lou Zixuan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记录本blog搭建历程 --- hexo配合github pages搭建</title>
+    <link href="http://yoursite.com/2018/05/03/hello-blog/"/>
+    <id>http://yoursite.com/2018/05/03/hello-blog/</id>
+    <published>2018-05-03T02:22:00.000Z</published>
+    <updated>2018-05-03T08:56:12.773Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直都希望能够搭建一个属于自己的blog，来满足自己<del>装逼</del>记录学习经历的需求。</p><p>但是一直由于<del>各种原因</del>(懒)，一直拖了下来，最近终于懒癌缓解，把这个blog搭了起来，那就赶紧记录下搭建过程，以及其中踩到的坑，算是对这一通折腾的证明。</p><a id="more"></a><h3 id="确定思路"><a href="#确定思路" class="headerlink" title="确定思路"></a>确定思路</h3><p>其实搭建博客由很多种实现方法，据我所查资料发现的blog实现方式就有几种：</p><ul><li>直接使用现有平台，包括但不限于CSDN、稀土掘金等</li><li>使用独立域名+VPS+blog系统，搭建个人独立blog</li></ul><p>本着折腾的精神自然要选择第二种看上去就很费劲的思路了，好处是可定制的程度很高，真正是属于码农的自留地。</p><h3 id="使用hexo生成blog框架"><a href="#使用hexo生成blog框架" class="headerlink" title="使用hexo生成blog框架"></a>使用hexo生成blog框架</h3><p>首先说明下其实hexo是属于上面所说的blog系统的一种，它是基于javaScript的，其他的基于python的Django应该也有类似的blog系统。</p><p>选择好了方向自然需要装环境，</p><ul><li><p>node.js</p><blockquote><p><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a></p></blockquote><p>注意下版本，我一开始装的是4.几的版本，之后的过程中报了个各种兼容性问题，从新安装8.11.1稳定版本就一切OK了</p></li></ul><p>node.js正确安装之后会自动添加到环境变量PATH路径中，所以可以直接使用，接下来就是安装hexo了。</p><p>打开命令行窗口，推荐使用git bash,据其他教程说使用Windows cmd会出现“意想不到”的问题。</p><ul><li><p>安装hexo</p><blockquote><p><code>npm install -g hexo</code></p></blockquote><p>  npm是node的包管理工具类似于python的pip，估计全称就是node package manage，由于众所周知的墙的存在npm有时候会很慢，可以尝试国内镜像cnpm。</p></li><li><p>安装依赖包</p><blockquote><p><code>npm install</code></p></blockquote></li><li><p>在想要放blog的文件夹下</p><blockquote><p><code>hexo init</code></p></blockquote></li><li><p>hexo生成gengerate</p><blockquote><p><code>hexo g</code></p></blockquote></li><li><p>hexo打开本地服务器server,本地调试用 localhost:4000</p><blockquote><p><code>hexo s</code></p></blockquote></li><li><p>hexo部署deploy</p><blockquote><p><code>hexo d</code></p></blockquote><p>  部署到GitHub pages上还需要一个扩展</p><blockquote><p><code>npm install hexo-deployer-git --save</code></p></blockquote></li></ul><h3 id="把blog放到github上"><a href="#把blog放到github上" class="headerlink" title="把blog放到github上"></a>把blog放到github上</h3><h3 id="关联独立域名到github主页"><a href="#关联独立域名到github主页" class="headerlink" title="关联独立域名到github主页"></a>关联独立域名到github主页</h3><p>参考链接：</p><p><a href="https://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="noopener">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></p><p><a href="https://segmentfault.com/a/1190000004947261" target="_blank" rel="noopener">手把手教你使用Hexo + Github Pages搭建个人独立博客 </a></p><p><a href="https://www.zhihu.com/question/31377141" target="_blank" rel="noopener">github怎么绑定自己的域名？</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直都希望能够搭建一个属于自己的blog，来满足自己&lt;del&gt;装逼&lt;/del&gt;记录学习经历的需求。&lt;/p&gt;
+&lt;p&gt;但是一直由于&lt;del&gt;各种原因&lt;/del&gt;(懒)，一直拖了下来，最近终于懒癌缓解，把这个blog搭了起来，那就赶紧记录下搭建过程，以及其中踩到的坑，算是对这一通折腾的证明。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Louzx blog init</title>
+    <link href="http://yoursite.com/2018/04/28/My-New-Post/"/>
+    <id>http://yoursite.com/2018/04/28/My-New-Post/</id>
+    <published>2018-04-28T08:20:00.000Z</published>
+    <updated>2018-05-03T09:23:23.750Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="我也要开始写博客了！！！"><a href="#我也要开始写博客了！！！" class="headerlink" title="我也要开始写博客了！！！"></a>我也要开始写博客了！！！</h3><p>插入音乐</p><object width="340" height="86" data="http://music.163.com/style/swf/widget.swf?sid=514761281&type=2&auto=0&width=320&height=66" type="application/x-shockwave-flash"></object><p>插入图片</p><p><img src="/2018/04/28/My-New-Post/title.jpg" alt="pic"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;我也要开始写博客了！！！&quot;&gt;&lt;a href=&quot;#我也要开始写博客了！！！&quot; class=&quot;headerlink&quot; title=&quot;我也要开始写博客了！！！&quot;&gt;&lt;/a&gt;我也要开始写博客了！！！&lt;/h3&gt;&lt;p&gt;插入音乐&lt;/p&gt;
+&lt;object width=&quot;340&quot; h
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2018/04/28/hello-world/"/>
+    <id>http://yoursite.com/2018/04/28/hello-world/</id>
+    <published>2018-04-28T07:39:44.858Z</published>
+    <updated>2018-05-03T08:23:26.719Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
