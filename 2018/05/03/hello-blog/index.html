@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>记录本blog搭建历程 --- hexo配合github pages搭建 | Lzx的博客</title>
+  <meta name="description" content="码农的自留地" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="Lzx的博客">
+
+  
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Lzx的博客</h1>
+            <h2 class="blog-description">码农的自留地</h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2018-05-03T02:22:00.000Z" itemprop="datePublished">
+          2018-05-03
+      </time>
+    
+</span>
+    <h1 class="post-title">记录本blog搭建历程 --- hexo配合github pages搭建</h1>
+    <section class="post-content">
+      <p>一直都希望能够搭建一个属于自己的blog，来满足自己<del>装逼</del>记录学习经历的需求。</p>
+<p>但是一直由于<del>各种原因</del>(懒)，一直拖了下来，最近终于懒癌缓解，把这个blog搭了起来，那就赶紧记录下搭建过程，以及其中踩到的坑，算是对这一通折腾的证明。</p>
+<a id="more"></a>
+<h3 id="确定思路"><a href="#确定思路" class="headerlink" title="确定思路"></a>确定思路</h3><p>其实搭建博客由很多种实现方法，据我所查资料发现的blog实现方式就有几种：</p>
+<ul>
+<li>直接使用现有平台，包括但不限于CSDN、稀土掘金等</li>
+<li>使用独立域名+VPS+blog系统，搭建个人独立blog</li>
+</ul>
+<p>本着折腾的精神自然要选择第二种看上去就很费劲的思路了，好处是可定制的程度很高，真正是属于码农的自留地。</p>
+<h3 id="使用hexo生成blog框架"><a href="#使用hexo生成blog框架" class="headerlink" title="使用hexo生成blog框架"></a>使用hexo生成blog框架</h3><p>首先说明下其实hexo是属于上面所说的blog系统的一种，它是基于javaScript的，其他的基于python的Django应该也有类似的blog系统。</p>
+<p>选择好了方向自然需要装环境，</p>
+<ul>
+<li><p>node.js</p>
+<blockquote>
+<p><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a></p>
+</blockquote>
+<p>注意下版本，我一开始装的是4.几的版本，之后的过程中报了个各种兼容性问题，从新安装8.11.1稳定版本就一切OK了</p>
+</li>
+</ul>
+<p>node.js正确安装之后会自动添加到环境变量PATH路径中，所以可以直接使用，接下来就是安装hexo了。</p>
+<p>打开命令行窗口，推荐使用git bash,据其他教程说使用Windows cmd会出现“意想不到”的问题。</p>
+<ul>
+<li><p>安装hexo</p>
+<blockquote>
+<p><code>npm install -g hexo</code></p>
+</blockquote>
+<p>  npm是node的包管理工具类似于python的pip，估计全称就是node package manage，由于众所周知的墙的存在npm有时候会很慢，可以尝试国内镜像cnpm。</p>
+</li>
+<li><p>安装依赖包</p>
+<blockquote>
+<p><code>npm install</code></p>
+</blockquote>
+</li>
+<li><p>在想要放blog的文件夹下</p>
+<blockquote>
+<p><code>hexo init</code></p>
+</blockquote>
+</li>
+<li><p>hexo生成gengerate</p>
+<blockquote>
+<p><code>hexo g</code></p>
+</blockquote>
+</li>
+<li><p>hexo打开本地服务器server</p>
+<blockquote>
+<p><code>hexo s</code></p>
+</blockquote>
+</li>
+<li><p>hexo部署deploy</p>
+<blockquote>
+<p><code>hexo d</code></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="把blog放到github上"><a href="#把blog放到github上" class="headerlink" title="把blog放到github上"></a>把blog放到github上</h3><h3 id="关联独立域名到github主页"><a href="#关联独立域名到github主页" class="headerlink" title="关联独立域名到github主页"></a>关联独立域名到github主页</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Lou Zixuan</h4>
+    <p>间歇性踌躇满志.持续性混吃等死.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://yoursite.com/2018/05/03/hello-blog/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/03/hello-blog/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/03/hello-blog/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2018/04/28/My-New-Post/">
+        Louzx blog init →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Lzx的博客</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
