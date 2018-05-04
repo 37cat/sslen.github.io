@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Lzx的博客</title>
+  <title>码农的自留地</title>
   
-  <subtitle>码农的自留地</subtitle>
+  <subtitle>持续性混吃等死，间歇性踌躇满志</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://louzx.me/"/>
   <updated>2018-05-03T08:56:12.773Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://louzx.me/</id>
   
   <author>
     <name>Lou Zixuan</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>记录本blog搭建历程 --- hexo配合github pages搭建</title>
-    <link href="http://yoursite.com/2018/05/03/hello-blog/"/>
-    <id>http://yoursite.com/2018/05/03/hello-blog/</id>
+    <link href="http://louzx.me/2018/05/03/hello-blog/"/>
+    <id>http://louzx.me/2018/05/03/hello-blog/</id>
     <published>2018-05-03T02:22:00.000Z</published>
     <updated>2018-05-03T08:56:12.773Z</updated>
     
@@ -37,10 +37,10 @@
   
   <entry>
     <title>Louzx blog init</title>
-    <link href="http://yoursite.com/2018/04/28/My-New-Post/"/>
-    <id>http://yoursite.com/2018/04/28/My-New-Post/</id>
+    <link href="http://louzx.me/2018/04/28/My-New-Post/"/>
+    <id>http://louzx.me/2018/04/28/My-New-Post/</id>
     <published>2018-04-28T08:20:00.000Z</published>
-    <updated>2018-05-03T09:23:23.750Z</updated>
+    <updated>2018-05-03T09:24:37.607Z</updated>
     
     <content type="html"><![CDATA[<h3 id="我也要开始写博客了！！！"><a href="#我也要开始写博客了！！！" class="headerlink" title="我也要开始写博客了！！！"></a>我也要开始写博客了！！！</h3><p>插入音乐</p><object width="340" height="86" data="http://music.163.com/style/swf/widget.swf?sid=514761281&type=2&auto=0&width=320&height=66" type="application/x-shockwave-flash"></object><p>插入图片</p><p><img src="/2018/04/28/My-New-Post/title.jpg" alt="pic"></p>]]></content>
     
@@ -59,8 +59,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2018/04/28/hello-world/"/>
-    <id>http://yoursite.com/2018/04/28/hello-world/</id>
+    <link href="http://louzx.me/2018/04/28/hello-world/"/>
+    <id>http://louzx.me/2018/04/28/hello-world/</id>
     <published>2018-04-28T07:39:44.858Z</published>
     <updated>2018-05-03T08:23:26.719Z</updated>
     
