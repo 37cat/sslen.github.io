@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>算法题 Edit Distance | 码农的自留地</title>
+  <meta name="description" content="持续性混吃等死，间歇性踌躇满志" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="码农的自留地">
+
+  
+  
+  <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">码农的自留地</h1>
+            <h2 class="blog-description">持续性混吃等死，间歇性踌躇满志</h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2018-05-06T06:35:52.000Z" itemprop="datePublished">
+          2018-05-06
+      </time>
+    
+</span>
+    <h1 class="post-title">算法题 Edit Distance</h1>
+    <section class="post-content">
+      <p>之前阿里菜鸟的在线编程题，当时只是有个一个思路但是没有实现出来，今天在lintcode上又看到了，那就记录一下吧。</p>
+<p>题目如下：</p>
+<p>给定两个字符串word1和word2,求出由一个变化到另外一个所需的最小步数，所允许的操作有：</p>
+<ul>
+<li>插入一个字符</li>
+<li>删除一个字符</li>
+<li>替换一个字符</li>
+</ul>
+<p><a href="https://www.lintcode.com/problem/edit-distance/description" target="_blank" rel="noopener">lintcode链接</a></p>
+<p>解题思路：</p>
+<p>动态规划</p>
+<p>（说实话，动态规划我并不是很熟悉，我对它的印象类似于递归。经常在这种看上去比较麻烦的编程题用到动态规划的思想，没办法，好好学吧。）</p>
+<p>动态规划三要素：转移方程，边界条件，最优子结构</p>
+<p>用dp[i][j]表示word1[0,i-1]转化到word2[0,j-1]的步骤，转移方程有两种情况：</p>
+<ul>
+<li>word1[i] == word2[j],则dp[i][j] = dp[i-1][j-1]</li>
+<li>word1[i] != word2[j],则分以上三种情况考虑：<ul>
+<li>插入，dp[i][j] = dp[i-1][j] + 1</li>
+<li>删除，dp[i][j] = dp[i][j-1] + 1</li>
+<li>替换，dp[i][j] = dp[i-1][j-1] + 1</li>
+</ul>
+</li>
+</ul>
+<p>python代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">editDistince</span><span class="params">(self, word1, word2)</span>:</span></span><br><span class="line">        m = len(word1)</span><br><span class="line">        n = len(word2)</span><br><span class="line">        <span class="comment"># (m+1)*(n+1)二维矩阵，根据定义dp[m+1][n+1]为初始状态，即word1的全部长度转化成word2的全部长度</span></span><br><span class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n+<span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(m+<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 此处即为边界条件，将一个空Stirng（长度为0）转化成另一个长度为i的String所需要的步数自然为i（即i次插入操作）</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n+<span class="number">1</span>):</span><br><span class="line">          dp[<span class="number">0</span>][i] = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(m+<span class="number">1</span>):</span><br><span class="line">          dp[j][<span class="number">0</span>] = j</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m+<span class="number">1</span>):</span><br><span class="line">          <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> word1[i<span class="number">-1</span>] == word2[j<span class="number">-1</span>]:</span><br><span class="line">              dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">              dp[i][j] = min(</span><br><span class="line">              dp[i<span class="number">-1</span>][j] + <span class="number">1</span></span><br><span class="line">              , dp[i][j<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">              , dp[i<span class="number">-1</span>][j<span class="number">-1</span>] +<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> dp[m][n]</span><br></pre></td></tr></table></figure></p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Lou Zixuan</h4>
+    <p>间歇性踌躇满志.持续性混吃等死.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://louzx.me/2018/05/06/Edit-Distance/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://louzx.me/2018/05/06/Edit-Distance/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://louzx.me/2018/05/06/Edit-Distance/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+    <a class="older-posts" href="/2018/05/03/hello-blog/">
+        记录本blog搭建历程 --- hexo配合github pages搭建 →
+    </a>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <a class="subscribe icon-feed" href="atom.xml"><span class="tooltip">Subscribe!</span></a>
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">码农的自留地</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>
