@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://louzx.me/"/>
-  <updated>2018-05-07T03:39:14.984Z</updated>
+  <updated>2018-05-08T14:14:56.557Z</updated>
   <id>http://louzx.me/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL备忘</title>
+    <link href="http://louzx.me/2018/05/08/SQL%E5%A4%87%E5%BF%98/"/>
+    <id>http://louzx.me/2018/05/08/SQL备忘/</id>
+    <published>2018-05-08T06:12:17.000Z</published>
+    <updated>2018-05-08T14:14:56.557Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在复习sql语句的写法，简单做一下记录。</p><a id="more"></a><h6 id="随机取出10条数据"><a href="#随机取出10条数据" class="headerlink" title="随机取出10条数据"></a>随机取出10条数据</h6><blockquote><p>SELECT * FROM table_name ORDER BY RANDOM() LIMIT 10;</p></blockquote><h6 id="随机取出10-的数据"><a href="#随机取出10-的数据" class="headerlink" title="随机取出10%的数据"></a>随机取出10%的数据</h6><blockquote><p>SELECT <em> FROM table_name ORDER BY RANDOM() LIMIT 0.1</em>(SELECT COUNT(*) FROM table_name);</p></blockquote><h6 id="ORDER-BY按列位置排序"><a href="#ORDER-BY按列位置排序" class="headerlink" title="ORDER BY按列位置排序"></a>ORDER BY按列位置排序</h6><blockquote><p>SELECT prod_id, prod_price, prod_name<br>FROM Products<br>ORDER BY 2, 3;</p></blockquote><p>ORDER BY排序的另一种写法，“2， 3”代表“prod_price, prod_name”,之前没用过的写法，记录一下</p><h6 id="GROUP-BY配合HAVING使用"><a href="#GROUP-BY配合HAVING使用" class="headerlink" title="GROUP BY配合HAVING使用"></a>GROUP BY配合HAVING使用</h6><p>HAVING的使用类似与WHERE，HAVING过滤针对的是分组</p><blockquote><p>SELECT vend_id, COUNT(<em>) AS num_prods<br>FROM Products<br>WHERE prod_price &gt;= 4    –先选择出price大于等于4的产品<br>GROUP BY vend_id  –按供应商分组<br>HAVING COUNT(</em>) &gt;= 2;    –供应商的产品数大于等于2</p></blockquote><h6 id="GROUP-BY和ORDER-BY的区别"><a href="#GROUP-BY和ORDER-BY的区别" class="headerlink" title="GROUP BY和ORDER BY的区别"></a>GROUP BY和ORDER BY的区别</h6><p>虽然有的DBMS会是的GROUP BY子句排序输出，但不能依赖，如果想要得到排序的输出需指定ORDER BY子句</p><h6 id="JOIN操作"><a href="#JOIN操作" class="headerlink" title="JOIN操作"></a>JOIN操作</h6><ol><li>内联结（INNER　JOIN）也叫等值链接</li></ol><blockquote><p>FROM table1 INNER JOIN table2 ON tabel1.id = table2.id<br>与<br>FROM table1, table2 where tabel1.id = table2.id<br>等价，都是取table1、table2的笛卡儿积</p></blockquote><ol start="2"><li>自联结</li></ol><blockquote><p>SELECT c1.cust_id, c1.cust_name, c1.cust_contact<br>FROM Customers AS c1, Customers AS c2   –同一个表通过使用别名出现两次<br>WHERE c1.cust_name = c2.cust_name<br>AND c2.cust_contact = ‘Jim Jones’;</p></blockquote><ol start="3"><li>自然联结</li></ol><p>自然联结要求你只能选择那些唯一的列，一般通过对一个表使用通配<br>符（SELECT *），而对其他表的列使用明确的子集来完成。</p><blockquote><p>SELECT C.*, O.order_num, O.order_date, OI.prod_id, OI.quantity, OI.item_price<br>FROM Customers AS C, Orders AS O, OrderItems AS OI<br>WHERE C.cust_id = O.cust_id<br>AND OI.order_num = O.order_num<br>AND prod_id = ‘RGAN01’;</p></blockquote><ol start="4"><li>外联结(OUTER JOIN)</li></ol><p>外联结可以联结两表中没有关联行的行，分为左外联结（LEFT）、右外联结（RIGHT）和全外联结（FULL）</p><h6 id="UNION操作"><a href="#UNION操作" class="headerlink" title="UNION操作"></a>UNION操作</h6><p>拼接操作</p><p>对比join，UNION把一张表拼在了另一张表的下方，而JOIN则是拼在了右边</p><p>UNION会自动消除重复的行，如果需要保留则使用UNION ALL</p><p>UNION操作如果要使用排序则将OREDR BY放在最后对所有结果排序，不允许只对UNION中的一部分排序</p><h6 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h6><ol><li>一次插入一行数据</li></ol><blockquote><p>INSERT INTO table(column1, column2, column3)<br>VALUES(value1, value2, value3);</p></blockquote><p>可以插入全部列，也可以是部分，没有提供的则为NULL</p><p>INTO关键词在有的DBMS中可以省略，但建议保留方便在不同DBMS之间移植</p><ol start="2"><li>INSERT SELECT</li></ol><blockquote><p>INSERT INTO table(column1, column2, column3)<br>SELECT column1, column2, column3<br>FROM table2;</p></blockquote><ol start="3"><li>复制表</li></ol><blockquote><p>SELECT *<br>INTO new_table<br>FROM table;</p></blockquote><blockquote><p>CREATE new_table<br>AS SELECT *<br>FROM table;</p></blockquote><h6 id="视图（VIEW）"><a href="#视图（VIEW）" class="headerlink" title="视图（VIEW）"></a>视图（VIEW）</h6><p>作为视图，它不包含任何列或数据，包含的是一个查询</p><p>创建</p><blockquote><p>CREATE VIEW view_name AS SELECT 一些条件</p></blockquote><p>删除</p><blockquote><p>DROP VIEW view_name</p></blockquote><h6 id="事务（TRANSACTION）"><a href="#事务（TRANSACTION）" class="headerlink" title="事务（TRANSACTION）"></a>事务（TRANSACTION）</h6><p>可以回退的语句有：</p><p>INSERT、UPDATE、DELETE</p><p>不能回退的有：</p><p>SELECT（也无必要）、CREATE、DROP</p><p>一般语法是：</p><blockquote><p>BEGIN TRANSACTION<br>…<br>COMMIT TRANSACTION</p></blockquote><h6 id="游标（CURSOR）"><a href="#游标（CURSOR）" class="headerlink" title="游标（CURSOR）"></a>游标（CURSOR）</h6><p>游标（cursor）是一个存储在 DBMS 服务器上的数据库查询，它不是一条SELECT语句，而是被该语句检索出来的结果集。在存储了游标之后，应用程序可以根据需要滚动或浏览其中的数据。</p><p>游标主要用于交互式应用，其中用户需要滚动屏幕上的数据，并对数据进行浏览或做出更改。</p><ol><li>创建游标：</li></ol><blockquote><p>DECLARE cursor_name CURSOR<br>FOR<br>SELECT 一些条件</p></blockquote><p>针对于MySQL</p><ol start="2"><li>使用游标：</li></ol><p>打开游标</p><blockquote><p>OPEN CURSOR cursor_name</p></blockquote><p>访问游标数据</p><blockquote><p>FETCH cursor_name INTO</p></blockquote><p>关闭游标</p><blockquote><p>CLOSE cursor_name</p></blockquote><h6 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h6><ol><li>主键</li></ol><p>PRIMARY KEY</p><ol start="2"><li>外键：</li></ol><p>外键是表中的一列，其值必须列在另一表的主键中。</p><p>在定义外键后， DBMS 不允许删除在另一个表中具有关联行的行。</p><blockquote><p>CREATE TABLE Orders<br>(<br>order_num INTEGER NOT NULL PRIMARY KEY,<br>order_date DATETIME NOT NULL,<br>cust_id CHAR(10) NOT NULL REFERENCES   Customers(cust_id)<br>);</p></blockquote><ol start="3"><li>唯一性约束</li></ol><p>UNIQUE</p><ol start="4"><li>检查性约束</li></ol><blockquote><p>CREATE TABLE OrderItems<br>(<br>order_num INTEGER NOT NULL,<br>order_item INTEGER NOT NULL,<br>prod_id CHAR(10) NOT NULL,<br>quantity INTEGER NOT NULL CHECK (quantity &gt; 0),<br>item_price MONEY NOT NULL<br>);</p></blockquote><hr><p>P.s. 参考的书是《SQL必知必会（第四版）》</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在复习sql语句的写法，简单做一下记录。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>如何成为数据科学家live 记录</title>
